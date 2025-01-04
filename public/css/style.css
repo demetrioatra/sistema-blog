@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#logo {
+    margin-left: 10px;
+}
+
+.header-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-item a {
+    color: black;
+}
+
+.col-auto {
+    position: static;
+    float: left;
+}
+
+.container-lg {
+    margin-left: 12%;
+    width: 80%;
+}
