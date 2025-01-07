@@ -1,5 +1,5 @@
 <%- include('../../partials/head.ejs') %>
-    <title>Categorias</title>
+    <title>Category</title>
 <%- include('../../partials/header.ejs') %>
     <%- include('../../partials/sidebar.ejs') %>
     <main class="container-lg">
@@ -25,8 +25,8 @@
                         <th><%- category.title %></th>
                         <th><%- category.slug %></th>
                         <th>
-                            <button class="btn btn-warning">Edit</button>
-                            <form action="/category/delete" method="post" style="display: inline;">
+                            <a class="btn btn-warning" href="/admin/category/edit/<%- category.id %>">Edit</a>
+                            <form action="/category/delete" method="post" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
                                 <input type="hidden" name="id" value="<%- category.id %>">
                                 <button class="btn btn-danger">Delete</button>
                             </form>
@@ -37,3 +37,17 @@
         </table>
     </main>
 <%- include('../../partials/script.ejs') %>
+<script>
+    function confirmarDelecao(event, form) {
+
+        var conf = confirm("Excluir Categoria?")
+
+        if (conf) {
+            form.submit()
+            console.log("Categoria Deletada!")
+        } else {
+            event.preventDefault()
+            console.log("Deleção cancelada...")
+        }
+    }
+</script>

@@ -6,11 +6,13 @@ const { where } = require('sequelize')
 
 //-------------------------------------------------------------------------------------------
 // Rotas
+// GET
 router.get('/admin/category/new', (req, res) => {
 
     res.render('admin/categories/new')
 })
 
+// READ ALL
 router.get('/admin/categories', (req, res) => {
 
     Category.findAll().then((categories) => {
@@ -20,7 +22,28 @@ router.get('/admin/categories', (req, res) => {
     })
 })
 
-router.post('/category/save', (req, res) => {
+// READ ONE
+router.get('/admin/category/edit/:id', (req,res) => {
+    
+    var id = req.params.id
+
+    if(isNaN(id)) 
+        res.redirect('/admin/categories/')
+    else {
+        Category.findByPk(id).then(category => {
+            if (category != undefined) {
+                res.render('admin/categories/edit', {
+                    category: category
+                })
+            } else
+                res.redirect('/admin/categories/')
+        })
+    }
+})
+
+// POST
+// CREATE
+router.post('/category/create', (req, res) => {
 
     var title = req.body.title
 
@@ -35,6 +58,23 @@ router.post('/category/save', (req, res) => {
         res.render('admin/categories/new')
 })
 
+// UPDATE
+router.post('/category/update', (req, res) => {
+
+    var id = req.body.id
+    var title = req.body.title
+
+    Category.update({
+        title: title,
+        slug: slugify(title)
+    }, {
+        where: {id: id}
+    }).then(() => {
+        res.redirect('/admin/categories/')
+    })
+})
+
+// DELETE
 router.post('/category/delete', (req, res) => {
     
     var id = req.body.id

@@ -1,8 +1,16 @@
 const express = require('express')
 const router = express.Router()
 
-router.get('/articles', (req, res) => {
-    res.send('Rota de Artigos')
+//-------------------------------------------------------------------------------------------
+// Rotas
+// Get
+router.get('/admin/article/new', (req, res) => {
+    res.render('admin/articles/new')
+})
+
+// READ ALL
+router.get('/admin/articles', (req, res) => {
+    res.render('admin/articles/index')
 })
 
 module.exports = router

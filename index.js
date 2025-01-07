@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const connection = require('./database/connection')
 const categoriesController = require('./controller/categoriesController')
 const articlesController = require('./controller/articlesController')
+var path = require('path');
 const Category = require('./database/models/Category')
 const Article = require('./database/models/Article')
 
@@ -17,6 +18,7 @@ connection.authenticate().then(() => {
 })
 
 app.use(express.static('public'))
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.set('view engine', 'ejs')
