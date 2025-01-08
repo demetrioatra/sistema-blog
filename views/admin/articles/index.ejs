@@ -1,23 +1,52 @@
 <%- include('../../partials/head.ejs') %>
-    <title>Category</title>
+    <title>Articles</title>
 <%- include('../../partials/header.ejs') %>
     <%- include('../../partials/sidebar.ejs') %>
     <main class="container-lg">
         <br>
         <div class="header-info">
             <h2>Articles</h2>
-            <a href="/admin/article/new" class="btn btn-success">New Category</a>
+            <a href="/admin/article/new" class="btn btn-success">New Article</a>
         </div>
+        <br>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Article</th>
+                    <th>Slug</th>
+                    <th>Category</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% articles.forEach(article => { %>
+                    <tr>
+                        <td><%- article.id %></td>
+                        <td><%- article.title %></td>
+                        <td><%- article.slug %></td>
+                        <td><%- article.category.title %></td>
+                        <td>
+                            <a class="btn btn-warning" href="/admin/article/edit/<%- article.id %>">Edit</a>
+                            <form action="/article/delete" method="post" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
+                                <input type="hidden" name="id" value="<%- article.id %>">
+                                <button class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
     </main>
 <%- include('../../partials/script.ejs') %>
 <script>
     function confirmarDelecao(event, form) {
 
-        var conf = confirm("Excluir Categoria?")
+        var conf = confirm("Excluir Artigo?")
 
         if (conf) {
             form.submit()
-            console.log("Categoria Deletada!")
+            console.log("Artigo Deletada!")
         } else {
             event.preventDefault()
             console.log("Deleção cancelada...")

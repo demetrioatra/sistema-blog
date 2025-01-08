@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 const Category = require('../database/models/Category')
 const slugify = require('slugify')
-const { where } = require('sequelize')
 
 //-------------------------------------------------------------------------------------------
 // Rotas

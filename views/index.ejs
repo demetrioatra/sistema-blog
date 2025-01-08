@@ -1,8 +1,22 @@
 <%- include('partials/head.ejs') %>
-    <title>Document</title>
-    <%- include('partials/header.ejs') %>
+    <title>Home</title>
+<%- include('partials/header.ejs') %>
     <%- include('partials/sidebar.ejs') %>
-    <div class="container-lg">
-        <h1>Ola mundo</h1>
-    </div>
+    <main class="container-lg">
+        <div class="jumbotron mt-2">
+            <h1 class="display-4">Hello, world!</h1>
+            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <hr class="my-4">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <p class="lead">
+              <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            </p>
+        </div>
+        <% articles.forEach((article) => { %>
+            <div class="card container">
+                <%- article.title %>
+                <%- article.description %>
+            </div>
+        <% }) %>
+    </main>
 <%- include('partials/script.ejs') %>

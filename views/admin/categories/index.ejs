@@ -1,11 +1,11 @@
 <%- include('../../partials/head.ejs') %>
-    <title>Category</title>
+    <title>Categories</title>
 <%- include('../../partials/header.ejs') %>
     <%- include('../../partials/sidebar.ejs') %>
     <main class="container-lg">
         <br>
         <div class="header-info">
-            <h2>Categorias</h2>
+            <h2>Categories</h2>
             <a href="/admin/category/new" class="btn btn-success">New Category</a>
         </div>
         <br>
@@ -15,22 +15,22 @@
                     <th>Id</th>
                     <th>Category</th>
                     <th>Slug</th>
-                    <th>Ações</th>
+                    <th>Options</th>
                 </tr>
             </thead>
             <tbody>
                 <% categories.forEach(category => { %>
                     <tr>
-                        <th><%- category.id %></th>
-                        <th><%- category.title %></th>
-                        <th><%- category.slug %></th>
-                        <th>
+                        <td><%- category.id %></td>
+                        <td><%- category.title %></td>
+                        <td><%- category.slug %></td>
+                        <td>
                             <a class="btn btn-warning" href="/admin/category/edit/<%- category.id %>">Edit</a>
                             <form action="/category/delete" method="post" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
                                 <input type="hidden" name="id" value="<%- category.id %>">
                                 <button class="btn btn-danger">Delete</button>
                             </form>
-                        </th>
+                        </td>
                     </tr>
                 <% }) %>
             </tbody>
