@@ -28,6 +28,25 @@ router.get('/admin/articles', (req, res) => {
     })
 })
 
+// READ ONE
+router.get('/admin/article/edit/:id', (req,res) => {
+    
+    var id = req.params.id
+
+    if(isNaN(id)) 
+        res.redirect('/admin/articles/')
+    else {
+        Article.findByPk(id).then(article => {
+            if (article != undefined) {
+                res.render('admin/articles/edit', {
+                    article: article
+                })
+            } else
+                res.redirect('/admin/articles/')
+        })
+    }
+})
+
 // POST
 // CREATE
 router.post('/article/create', (req, res) => {

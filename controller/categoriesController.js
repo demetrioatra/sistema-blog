@@ -14,9 +14,10 @@ router.get('/admin/category/new', (req, res) => {
 // READ ALL
 router.get('/admin/categories', (req, res) => {
 
-    Category.findAll().then((categories) => {
-        res.render('admin/categories/index', {
-            categories: categories
+    Category.findAll()
+        .then((categories) => {
+            res.render('admin/categories/index', {
+                categories: categories
         })
     })
 })
