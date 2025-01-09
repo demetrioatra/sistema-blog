@@ -11,6 +11,7 @@ router.get('/admin/article/new', (req, res) => {
 
     Category.findAll().then((categories) => {
         res.render('admin/articles/new', {
+
             categories: categories
         })
     })
@@ -21,8 +22,10 @@ router.get('/admin/articles', (req, res) => {
 
     Article.findAll({
         include: [{model: Category}]
+
     }).then((articles) => {
         res.render('admin/articles/index', {
+
             articles: articles
         })
     })
@@ -33,13 +36,17 @@ router.get('/admin/article/edit/:id', (req,res) => {
     
     var id = req.params.id
 
-    if(isNaN(id)) 
+    if (isNaN(id)) 
         res.redirect('/admin/articles/')
+    
     else {
         Article.findByPk(id).then(article => {
+
             if (article != undefined) {
                 res.render('admin/articles/edit', {
-                    article: article
+
+                    article: article,
+                    category: category
                 })
             } else
                 res.redirect('/admin/articles/')
@@ -56,10 +63,12 @@ router.post('/article/create', (req, res) => {
     var categoryId = req.body.category
 
     Article.create({
+
         title: title,
         slug: slugify(title),
         description: description,
         categoryId: categoryId
+
     }).then(() => {
         res.redirect('/admin/articles/')
     })
@@ -74,9 +83,12 @@ router.post('/article/delete', (req, res) => {
     var id = req.body.id
 
     if (id != undefined) {
+
         if (!isNaN(id)) {
             Article.destroy({
+
                 where: {id: id}
+
             }).then(() => {
                 res.redirect('/admin/articles/')
             })

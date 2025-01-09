@@ -5,5 +5,12 @@
             <a href="/" class="navbar-brand" id="logo">
                 <span>Sistema de blog</span>
             </a>
+            <ul class="nav nav-pills">
+                <% categories.forEach(category => { %>
+                    <li class="nav-item">
+                        <a href="/<% category.slug %>" class="nav-link"><%- category.title %></a>
+                    </li>
+                <% }) %>
+            </ul>
         </nav>
     </header>

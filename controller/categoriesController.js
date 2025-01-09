@@ -14,10 +14,10 @@ router.get('/admin/category/new', (req, res) => {
 // READ ALL
 router.get('/admin/categories', (req, res) => {
 
-    Category.findAll()
-        .then((categories) => {
-            res.render('admin/categories/index', {
-                categories: categories
+    Category.findAll().then((categories) => {
+        res.render('admin/categories/index', {
+
+            categories: categories
         })
     })
 })
@@ -29,10 +29,12 @@ router.get('/admin/category/edit/:id', (req,res) => {
 
     if(isNaN(id)) 
         res.redirect('/admin/categories/')
+
     else {
         Category.findByPk(id).then(category => {
             if (category != undefined) {
                 res.render('admin/categories/edit', {
+
                     category: category
                 })
             } else
@@ -49,8 +51,10 @@ router.post('/category/create', (req, res) => {
 
     if (title != undefined) {
         Category.create({
+
             title: title,
             slug: slugify(title)
+
         }).then(() => {
             res.redirect('/admin/categories/')
         })
@@ -65,10 +69,14 @@ router.post('/category/update', (req, res) => {
     var title = req.body.title
 
     Category.update({
+
         title: title,
         slug: slugify(title)
+
     }, {
+
         where: {id: id}
+
     }).then(() => {
         res.redirect('/admin/categories/')
     })
@@ -80,14 +88,17 @@ router.post('/category/delete', (req, res) => {
     var id = req.body.id
 
     if (id != undefined) {
+        
         if (!isNaN(id)) {
             Category.destroy({
+
                 where: {id: id}
+
             }).then(() => {
                 res.redirect('/admin/categories/')
             })
         } else
-        res.redirect('/admin/categories/')  
+            res.redirect('/admin/categories/')  
     } else
         res.redirect('/admin/categories/')
 })
