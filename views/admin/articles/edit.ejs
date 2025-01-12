@@ -12,11 +12,18 @@
                     <label for="title">Title</label>
                     <input type="text" name="title" class="form-control" value="<%- article.title %>">
                     <br>
-                    <label for="description">description</label>
-                    <textarea name="description" id="mytextarea" class="form-control"><%- article.description %></textarea>
+                    <label for="description">Description</label>
+                    <textarea name="description" id="mytextarea" class="form-control"><%= article.description %></textarea>
                     <br>
-                    <label for="category">Category</label>
-                    <select name="category" class="form-control">
+                    <label for="categoryId">Category</label>
+                    <select name="categoryId" class="form-control">
+                        <% categories.forEach(category => { %>
+                            <% if (category.id == article.categoryId) { %>
+                                <option value="<%= category.id %>" selected><%= category.title %></option>
+                            <% } else { %>
+                                <option value="<%= category.id %>"><%= category.title %></option>
+                            <% } %>
+                        <% }) %>
                     </select>
                     <input type="hidden" name="id" value="<%- article.id %>">
                     <br>

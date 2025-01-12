@@ -3,12 +3,16 @@ const router = express.Router()
 const Category = require('../database/models/Category')
 const slugify = require('slugify')
 
-//-------------------------------------------------------------------------------------------
 // Rotas
-// GET
+// ---------------------------------------- GET ----------------------------------------
 router.get('/admin/category/new', (req, res) => {
 
-    res.render('admin/categories/new')
+    Category.findAll().then((categories) => {
+
+        res.render('admin/categories/new', {
+            categories: categories
+        })
+    })
 })
 
 // READ ALL
@@ -32,10 +36,15 @@ router.get('/admin/category/edit/:id', (req,res) => {
 
     else {
         Category.findByPk(id).then(category => {
+            
             if (category != undefined) {
-                res.render('admin/categories/edit', {
 
-                    category: category
+                Category.findAll().then((categories) => {
+                    res.render('admin/categories/edit', {
+
+                        category: category,
+                        categories: categories
+                    })
                 })
             } else
                 res.redirect('/admin/categories/')
@@ -43,7 +52,7 @@ router.get('/admin/category/edit/:id', (req,res) => {
     }
 })
 
-// POST
+// ---------------------------------------- POST ----------------------------------------
 // CREATE
 router.post('/category/create', (req, res) => {
 
@@ -79,6 +88,8 @@ router.post('/category/update', (req, res) => {
 
     }).then(() => {
         res.redirect('/admin/categories/')
+    }).catch((err) => {
+        res.redirect('/')
     })
 })
 

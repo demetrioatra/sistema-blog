@@ -4,9 +4,32 @@
     box-sizing: border-box;
 }
 
-
 a {
     text-decoration: none;
+}
+
+span {
+    font-size: 16px;
+}
+
+td {
+    font-size: 14px;
+}
+
+nav a img {
+    width: 28px;
+    height: 28px;
+    margin:0 1.5px 5px 0;
+}
+
+.sidebarIcon {
+    width: 13px;
+    height: 15px;
+    margin-right: 5px;
+}
+
+.nav-link {
+    font-size: 12px;
 }
 
 #logo {

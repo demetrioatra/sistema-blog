@@ -14,8 +14,8 @@
                     <label for="description">Description</label>
                     <textarea name="description" id="mytextarea" class="form-control"></textarea>
                     <br>
-                    <label for="category">Category</label>
-                    <select name="category" class="form-control">
+                    <label for="categoryId">Category</label>
+                    <select name="categoryId" class="form-control">
                         <% categories.forEach((category) => { %>
                             <option value="<%- category.id %>""><%- category.title %></option>
                         <% }) %>

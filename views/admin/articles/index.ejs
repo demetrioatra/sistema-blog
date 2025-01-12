@@ -3,12 +3,10 @@
 <%- include('../../partials/header.ejs') %>
     <%- include('../../partials/sidebar.ejs') %>
     <main class="container-lg">
-        <br>
         <div class="header-info">
             <h2>Articles</h2>
             <a href="/admin/article/new" class="btn btn-success">New Article</a>
         </div>
-        <br>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -37,6 +35,11 @@
                 <% }) %>
             </tbody>
         </table>
+        <div class="row mt-3">
+            <div class="col col-12">
+                <a href="/articles/page/1" style="float: right;">Next >></a>
+            </div>
+        </div>
     </main>
 <%- include('../../partials/script.ejs') %>
 <script>

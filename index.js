@@ -10,12 +10,7 @@ const Article = require('./database/models/Article')
 
 //------------------------------------------------------------------------
 
-// Conexão com o banco
-connection.authenticate().then(() => {
-    console.log('Conectado com o banco!')
-}).catch((err) => {
-    console.log('Conexão inválida! ERRO: ' + err)
-})
+
 
 app.use(express.static('public'))
 app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
@@ -52,7 +47,9 @@ app.get('/:slug', (req, res) => {
     var slug = req.params.slug
 
     Article.findOne({
+
         where: {slug: slug}
+
     }).then((article) => {
         Category.findAll().then((categories) => {
         
@@ -60,7 +57,7 @@ app.get('/:slug', (req, res) => {
                 res.render('article', {
 
                     article: article,
-                    categories, categories
+                    categories: categories
                 })
             }
             else
@@ -73,7 +70,12 @@ app.get('/:slug', (req, res) => {
 
 app.get('/', (req, res) => {
 
-    Article.findAll().then((articles) => {
+    Article.findAll({
+        
+        limit: 4,
+        order: [['id', 'DESC']]
+
+    }).then((articles) => {
         Category.findAll().then((categories) => {
             res.render('index', {
 
@@ -87,6 +89,12 @@ app.get('/', (req, res) => {
 
 //------------------------------------------------------------------------
 
-app.listen(8081, () => {
-    console.log('Servidor iniciado!')
+// Servidor
+app.listen(8081, () => {    console.log('Servidor iniciado!')   })
+
+// Conexão com o banco
+connection.authenticate().then(() => {
+    console.log('Conectado com o banco!')
+}).catch((err) => {
+    console.log('Conexão inválida! ERRO: ' + err)
 })

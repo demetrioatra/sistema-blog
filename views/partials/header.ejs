@@ -3,12 +3,12 @@
     <header>
         <nav class="navbar navbar-light border">
             <a href="/" class="navbar-brand" id="logo">
-                <span>Sistema de blog</span>
+                <img src="/img/logo.png" alt=""><span>Blog System</span>
             </a>
             <ul class="nav nav-pills">
                 <% categories.forEach(category => { %>
                     <li class="nav-item">
-                        <a href="/<% category.slug %>" class="nav-link"><%- category.title %></a>
+                        <a href="/articles/tagged/<%- category.slug %>" class="nav-link"><%- category.title %></a>
                     </li>
                 <% }) %>
             </ul>

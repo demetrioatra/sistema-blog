@@ -4,8 +4,8 @@
     <%- include('partials/sidebar.ejs') %>
     <main class="container-lg">
         <div class="jumbotron mt-2">
-            <h1 class="display-4">Hello, world!</h1>
-            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <h1 class="display-6">Hello, world!</h1>
+            <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
         </div>
         <br>
         <% articles.forEach((article) => { %>
@@ -13,5 +13,10 @@
                 <a href="/<%- article.slug %>"><%- article.title %></a> 
             </div>
         <% }) %>
+        <div class="row mt-3">
+            <div class="col col-12">
+                <a href="/articles/page/1" style="float: right;">Next >></a>
+            </div>
+        </div>
     </main>
 <%- include('partials/script.ejs') %>

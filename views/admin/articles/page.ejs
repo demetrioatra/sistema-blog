@@ -1,0 +1,20 @@
+<%- include('../../partials/head.ejs') %>
+    <title>Articles - Create</title>
+<%- include('../../partials/header.ejs') %>
+    <%- include('../../partials/sidebar.ejs') %>
+    <br>
+    <h4 style="margin-left: 15%;">Newest Articles</h4>
+    <hr>
+    <main class="container-lg">
+        <% result.articles.rows.forEach(article => { %>
+            <br>
+            <h5><%= article.title %></h5>
+            <p><%- article.description %></h2>
+        <% }) %>
+        <div class="row mt-3">
+            <div class="col col-12">
+                <a href="/articles/page/1" style="float: right;">Next >></a>
+            </div>
+        </div>
+    </main>
+<%- include('../../partials/script.ejs') %>
