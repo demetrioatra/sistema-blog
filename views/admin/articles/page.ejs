@@ -1,20 +1,25 @@
 <%- include('../../partials/head.ejs') %>
-    <title>Articles - Create</title>
+    <title>Articles</title>
 <%- include('../../partials/header.ejs') %>
     <%- include('../../partials/sidebar.ejs') %>
-    <br>
-    <h4 style="margin-left: 15%;">Newest Articles</h4>
-    <hr>
-    <main class="container-lg">
+    <main class="container-lg mt-3">
         <% result.articles.rows.forEach(article => { %>
-            <br>
-            <h5><%= article.title %></h5>
-            <p><%- article.description %></h2>
-        <% }) %>
-        <div class="row mt-3">
-            <div class="col col-12">
-                <a href="/articles/page/1" style="float: right;">Next >></a>
+            <div class="card">
+                <a href="/article/<%- article.id %>/<%- article.slug %>"><%- article.title %></a>
             </div>
+        <% }) %>
+        <div class="page-control mt-3">
+            <% if (result.pageNum > 2) { %>
+                <a href="/articles/page/<%= result.pageNum - 1 %>"><< Previous</a>
+            <% } else if (result.pageNum == 2) { %>
+                <a href="/"><< Previous</a>
+            <% } %>
+            <p><%- result.pageNum %></p>
+            <% if (result.next) { %>
+                <a href="/articles/page/<%= result.pageNum + 1 %>">Next >></a>
+            <% } else { %>
+                <a href="/">Home</a>
+            <% } %>
         </div>
     </main>
 <%- include('../../partials/script.ejs') %>

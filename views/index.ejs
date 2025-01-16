@@ -3,19 +3,18 @@
 <%- include('partials/header.ejs') %>
     <%- include('partials/sidebar.ejs') %>
     <main class="container-lg">
-        <div class="jumbotron mt-2">
-            <h1 class="display-6">Hello, world!</h1>
-            <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <div class="jumbotron mt-3">
+            <h5>Welcome back, </h5>
         </div>
         <br>
         <% articles.forEach((article) => { %>
-            <div class="card container" style="height: 50px; padding: 10px 0px 0px 50px;">
-                <a href="/<%- article.slug %>"><%- article.title %></a> 
+            <div class="card">
+                <a href="/article/<%- article.id %>/<%- article.slug %>"><%- article.title %></a>
             </div>
         <% }) %>
         <div class="row mt-3">
             <div class="col col-12">
-                <a href="/articles/page/1" style="float: right;">Next >></a>
+                <a href="/articles/page/2" style="float: right;">Next >></a>
             </div>
         </div>
     </main>

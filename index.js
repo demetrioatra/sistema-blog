@@ -1,16 +1,17 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const path = require('path');
+const bcrypt = require('bcryptjs')
 const connection = require('./database/connection')
+const Category = require('./database/models/Category')
+const User = require('./database/models/User')
+const Article = require('./database/models/Article')
 const categoriesController = require('./controller/categoriesController')
 const articlesController = require('./controller/articlesController')
-var path = require('path');
-const Category = require('./database/models/Category')
-const Article = require('./database/models/Article')
+const usersController = require('./controller/usersController')
 
 //------------------------------------------------------------------------
-
-
 
 app.use(express.static('public'))
 app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
@@ -19,13 +20,14 @@ app.use(bodyParser.json())
 app.set('view engine', 'ejs')
 app.use('/', categoriesController)
 app.use('/', articlesController)
-
+app.use('/', usersController)
 
 // Rotas
-// GET
-app.get('/404', (req, res) => {
-    Category.findAll().then((categories) => {
+// ------------------------------- GET -------------------------------
 
+app.get('/404', (req, res) => {
+
+    Category.findAll().then((categories) => {
         res.render('notfound', {
 
             categories: categories
@@ -34,37 +36,12 @@ app.get('/404', (req, res) => {
 })
 
 app.get('/about', (req, res) => {
+
     Category.findAll().then((categories) => {
         res.render('about', {
 
             categories: categories
         })
-    })
-})
-
-app.get('/:slug', (req, res) => {
-    
-    var slug = req.params.slug
-
-    Article.findOne({
-
-        where: {slug: slug}
-
-    }).then((article) => {
-        Category.findAll().then((categories) => {
-        
-            if (article != undefined) {
-                res.render('article', {
-
-                    article: article,
-                    categories: categories
-                })
-            }
-            else
-                res.redirect('/')
-        })
-    }).catch((err) => {
-        res.redirect('/')
     })
 })
 
@@ -85,7 +62,6 @@ app.get('/', (req, res) => {
         })
     })
 })
-
 
 //------------------------------------------------------------------------
 

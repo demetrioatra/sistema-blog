@@ -1,0 +1,23 @@
+<%- include('../../partials/head.ejs') %>
+    <title>User - Edit</title>
+<%- include('../../partials/header.ejs') %>
+    <%- include('../../partials/sidebar.ejs') %>
+    <br>
+    <main class="container-lg">
+        <h2>User - Edit</h2>
+        <br>
+        <div class="card">
+            <div class="card-header">
+                <form action="/user/update" method="post" class="container">
+                    <label for="email">E-mail</label>
+                    <input type="email" name="email" class="form-control" value="<%- user.email %>">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="form-control" value="<%- user.password %>">
+                    <input type="hidden" name="id" value="<%- user.id %>">
+                    <br>
+                    <button class="btn btn-sm btn-success">Update User</button>
+                </form>
+            </div>
+        </div>
+    </main>
+<%- include('../../partials/script.ejs') %>

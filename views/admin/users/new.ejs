@@ -1,0 +1,29 @@
+<%- include('../../partials/head.ejs') %>
+    <title>New User</title>
+<%- include('../../partials/header.ejs') %>
+    <br>
+    <main class="container-md">
+        <div class="card">
+            <br>
+            <div style="padding: 12px">
+                <h3><img src="/img/logo.png" alt="" style="width: 40px; height: 40px;"> Join Blog System</h3>
+                <p style="font-size: 10px;">By clicking “Sign up”, you agree to our terms of service and acknowledge you have read our privacy policy.</p>
+            </div>
+            <form action="/user/create" method="post" class="container">
+                <label for="name"><b>Name</b></label>
+                <input type="text" name="name" class="form-control">
+                <br>
+                <label for="email"><b>Email</b></label>
+                <input type="email" name="email" class="form-control">
+                <br>
+                <label for="password"><b>Password</b></label>
+                <input type="password" name="password" class="form-control">
+                <br>
+                <button class="btn btn-sm btn-primary form-control">Sign up</button>
+            </form>
+            <div style="padding: 12px;">
+                <p style="font-size: 10px;">Already have an account? <a href="/user/login">Log in</a></p>
+            </div>
+        </div>
+    </main>
+<%- include('../../partials/script.ejs') %>

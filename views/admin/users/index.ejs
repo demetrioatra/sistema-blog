@@ -1,32 +1,34 @@
 <%- include('../../partials/head.ejs') %>
-    <title>Categories</title>
+    <title>Users</title>
 <%- include('../../partials/header.ejs') %>
     <%- include('../../partials/sidebar.ejs') %>
     <main class="container-lg">
         <div class="header-info">
-            <h2><%- categories.length %> Categories</h2>
-            <a href="/admin/category/new" class="btn btn-sm btn-success">New Category</a>
+            <h2><%- users.length %> Users</h2>
+            <a href="/user/signup" class="btn btn-sm btn-success">New User</a>
         </div>
         <br>
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Category</th>
-                    <th>Slug</th>
+                    <th>Name</th>
+                    <th>E-mail</th>
+                    <th>Password</th>
                     <th>Options</th>
                 </tr>
             </thead>
             <tbody>
-                <% categories.forEach(category => { %>
+                <% users.forEach(user => { %>
                     <tr>
-                        <td><%- category.id %></td>
-                        <td><%- category.title %></td>
-                        <td><%- category.slug %></td>
+                        <td><%- user.id %></td>
+                        <td><%- user.name %></td>
+                        <td><%- user.email %></td>
+                        <td><%- user.password %></td>
                         <td>
-                            <a class="btn btn-sm btn-warning" href="/admin/category/edit/<%- category.id %>">Edit</a>
-                            <form action="/category/delete" method="post" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
-                                <input type="hidden" name="id" value="<%- category.id %>">
+                            <a class="btn btn-sm btn-warning" href="/admin/user/edit/<%- user.id %>">Edit</a>
+                            <form action="/user/delete" method="post" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
+                                <input type="hidden" name="id" value="<%- user.id %>">
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </form>
                         </td>
@@ -39,14 +41,14 @@
 <script>
     function confirmarDelecao(event, form) {
 
-        var conf = confirm("Excluir Categoria?")
+        var conf = confirm("Delete user?")
 
         if (conf) {
             form.submit()
-            console.log("Categoria Deletada!")
+            console.log("User Deleted!")
         } else {
             event.preventDefault()
-            console.log("Deleção cancelada...")
+            console.log("Operation canceled...")
         }
     }
 </script>

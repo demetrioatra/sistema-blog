@@ -8,18 +8,23 @@ a {
     text-decoration: none;
 }
 
-span {
-    font-size: 16px;
+.navbar {
+    height: 46px;
+    display: flex;
 }
 
-td {
-    font-size: 14px;
+#navbarLogo {
+    justify-content: space-around;
+    gap: 69.5%;
+}
+
+#navbarCategories {
+    justify-content: center;
 }
 
 nav a img {
     width: 28px;
     height: 28px;
-    margin:0 1.5px 5px 0;
 }
 
 .sidebarIcon {
@@ -32,8 +37,12 @@ nav a img {
     font-size: 12px;
 }
 
-#logo {
-    margin-left: 10px;
+td {
+    font-size: 14px;
+}
+
+.card {
+    min-height: 50px;
 }
 
 .header-info {
@@ -54,4 +63,17 @@ nav a img {
 .container-lg {
     margin-left: 12%;
     width: 80%;
+}
+
+.container-md {
+    width: 34.5%;
+}
+
+.container-sm {
+    width: 25%;
+}
+
+.page-control {
+    display: flex; 
+    justify-content: space-between;
 }

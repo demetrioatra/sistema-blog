@@ -1,0 +1,23 @@
+<%- include('../../partials/head.ejs') %>
+    <title>New User</title>
+<%- include('../../partials/header.ejs') %>
+    <br>
+    <main class="container-sm" style="display: flex; flex-direction: column; align-items: center;">
+        <a href="/"><img src="/img/logo.png" alt="" style="width: 34px; height: 34px;"></a>
+        <div class="card mt-3">
+            <form action="/user/login" method="post" class="container">
+                <br>
+                <label for="email"><b>Email</b></label>
+                <input type="email" name="email" class="form-control">
+                <br>
+                <label for="password"><b>Password</b></label>
+                <input type="password" name="password" class="form-control">
+                <br>
+                <button class="btn btn-sm btn-primary form-control">Log in</button>
+                <hr>
+            </form>
+        </div>
+        <br>
+        <p style="font-size: 11px;">Don’t have an account? <a href="/admin/user/new">Sign up</a></p>
+    </main>
+<%- include('../../partials/script.ejs') %>
